@@ -7,21 +7,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-    " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
-    " File Explorer
     Plug 'scrooloose/NERDTree'
-    " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
-    " COC autocompletion
 	  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " NVIM Startup screen
 	  Plug 'mhinz/vim-startify'
-    " One Dark Theme
-    "Plug 'joshdick/onedark.vim'
-    " Dracula Theme
-    "Plug 'dracula/vim', { 'as': 'dracula' }
-    " Nord Theme
     Plug 'arcticicestudio/nord-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -34,4 +24,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'junegunn/gv.vim'
+    Plug 'justinmk/vim-sneak'
+    Plug 'unblevable/quick-scope'
+    Plug 'liuchengxu/vim-which-key'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+    Plug 'vimlab/split-term.vim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'romgrk/barbar.nvim'
 call plug#end()

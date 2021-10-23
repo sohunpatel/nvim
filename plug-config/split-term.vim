@@ -1,0 +1,2 @@
+set splitright
+set splitbelow

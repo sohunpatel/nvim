@@ -2,8 +2,21 @@
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": ["c", "c", "cpp", "c++", "objc", "objcpp"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "filetypes": [
+        "c", 
+        "c", 
+        "cpp", 
+        "c++", 
+        "objc", 
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls", 
+        "compile_commands.json",
+        ".nvim/",
+        ".git/", 
+        ".hg/"
+      ],
       "initializationOptions": {
         "cache": {
           "directory": "/tmp/clss"

@@ -7,6 +7,8 @@ nnoremap <M-j>    :resize -2<CR>
 nnoremap <M-k>    :resize +2<CR>
 nnoremap <M-h>    :vertical resize -2<CR>
 nnoremap <M-l>    :vertical resize +2<CR>
+nnoremap <M-t>    :FloatermToggle
+nnoremap <M-e>    :NERDTreeToggle
 
 " I hate escape more than anything else
 inoremap jk <Esc>
