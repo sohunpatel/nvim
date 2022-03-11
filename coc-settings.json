@@ -22,6 +22,24 @@
           "directory": "/tmp/clss"
         }
       }
+    },
+    "svls": {
+      "command": "svls",
+      "filetypes": [
+        "verilog"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".nvim/",
+        ".git/",
+        ".hg"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/clss"
+        }
+      }
     }
   }
 }

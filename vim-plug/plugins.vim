@@ -32,4 +32,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'vimlab/split-term.vim'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'romgrk/barbar.nvim'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'tomasiser/vim-code-dark'
 call plug#end()
