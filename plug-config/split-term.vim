@@ -1,2 +1,0 @@
-set splitright
-set splitbelow

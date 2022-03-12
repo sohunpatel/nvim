@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/home/sohun/.config/nvim'
-let g:netrw_dirhist_6='/home/sohun/.config/nvim/plugged'
-let g:netrw_dirhist_5='/home/sohun/.config/nvim/plugged/vim-which-key'
-let g:netrw_dirhist_4='/home/sohun/.config/nvim/plugged'
-let g:netrw_dirhist_3='/home/sohun/.config/nvim'
-let g:netrw_dirhist_2='/home/sohun/.config'
-let g:netrw_dirhist_1='/home/sohun/.config/nvim'
