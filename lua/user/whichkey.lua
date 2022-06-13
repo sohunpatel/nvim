@@ -140,7 +140,8 @@ local mappings = {
         s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
         S = {"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols"}
     },
-    s = {
+
+    S = {
         name = "Search",
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
@@ -152,6 +153,13 @@ local mappings = {
         C = {"<cmd>Telescope commands<cr>", "Commands"}
     },
 
+    s = {
+        name = "ssh",
+        e = {"<cmd>lua _SSH_EPYC_TOGGLE()<cr>", "epyc"},
+        f = {"<cmd>lua _SSH_FPGA01_TOGGLE()<cr>", "fpga01"},
+        p = {"<cmd>lua _SSH_PYNQ_TOGGLE()<cr>", "pynq"}
+    },
+
     t = {
         name = "Terminal",
         n = {"<cmd>lua _NODE_TOGGLE()<cr>", "Node"},
@@ -160,7 +168,9 @@ local mappings = {
         p = {"<cmd>lua _PYTHON_TOGGLE()<cr>", "Python"},
         f = {"<cmd>ToggleTerm direction=float<cr>", "Float"},
         h = {"<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal"},
-        v = {"<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical"}
+        v = {"<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical"},
+        e = {"<cmd>lua _SSH_EPYC_TOGGLE()<cr>", "ssh epyc"},
+        F = {"<cmd>lua _SSH_FPGA01_TOGGLE()<cr>", "ssh fpga01"}
     }
 }
 

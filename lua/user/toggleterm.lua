@@ -85,3 +85,37 @@ local python = Terminal:new({
 function _PYTHON_TOGGLE()
     python:toggle()
 end
+
+local ssh_epyc = Terminal:new({
+    cmd = "ssh epyc",
+    direction = "vertical",
+    size = 200,
+    hidden = true
+})
+
+function _SSH_EPYC_TOGGLE()
+    ssh_epyc:toggle()
+end
+
+local ssh_fpga01 = Terminal:new({
+    cmd = "ssh fpga01",
+    direction = "vertical",
+    size = 200,
+    hidden = true
+})
+
+function _SSH_FPGA01_TOGGLE()
+    ssh_fpga01:toggle()
+end
+
+local ssh_pynq = Terminal:new({
+    cmd = "ssh pynq",
+    direction = "vertical",
+    size = 200,
+    hidden = true
+})
+
+function _SSH_PYNQ_TOGGLE()
+    ssh_pynq:toggle()
+end
+
