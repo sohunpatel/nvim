@@ -159,11 +159,6 @@ _G.packer_plugins = {
     path = "/home/sohun/.local/share/nvim/site/pack/packer/start/nlsp-settings.nvim",
     url = "https://github.com/tamago324/nlsp-settings.nvim"
   },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/sohun/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
-  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/sohun/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -243,6 +238,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sohun/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-css-color"] = {
+    loaded = true,
+    path = "/home/sohun/.local/share/nvim/site/pack/packer/start/vim-css-color",
+    url = "https://github.com/ap//vim-css-color"
   },
   ["which-key.nvim"] = {
     loaded = true,

@@ -58,9 +58,11 @@ return packer.startup(function(use)
     use "goolord/alpha-nvim"
     use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
     use "folke/which-key.nvim"
+    use "ap//vim-css-color"
 
     -- Colorschemes
     use "lunarvim/darkplus.nvim"
+    -- use "dylanaraps/wal.vim"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -78,7 +80,7 @@ return packer.startup(function(use)
     use "neovim/nvim-lspconfig" -- enable LSP
     use "williamboman/nvim-lsp-installer" -- simple to use language server installer
     use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-    use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+    -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use "folke/trouble.nvim"
     use {
         "iamcco/markdown-preview.nvim",
