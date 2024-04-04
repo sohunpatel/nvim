@@ -32,7 +32,7 @@ M.capabilites.textDocument.completion.completionItem = {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "clangd", "cmake", "lua_ls", "pylsp", "rust_analyzer" }
+local servers = { "ccls", "cmake", "lua_ls", "pylsp", "rust_analyzer" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

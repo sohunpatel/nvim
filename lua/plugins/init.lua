@@ -57,24 +57,6 @@ local plugins = {
     end,
   },
 
-  -- lsp helper
-  -- {
-  --   "williamboman/mason.nvim",
-  --   cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-  --   opts = function()
-  --     return require "plugins.configs.mason"
-  --   end,
-  --   config = function(_, opts)
-  --     require("mason").setup(opts)
-  --
-  --     vim.api.nvim_create_user_command("MasonInstallAll", function()
-  --       if opts.ensure_installed and #opts.ensure_installed > 0 then
-  --         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-  --       end
-  --     end, {})
-  --   end
-  -- },
-
   -- actual lsp stuff
   {
     "neovim/nvim-lspconfig",
@@ -306,6 +288,23 @@ local plugins = {
     config = function()
       require("core.utils").load_mappings "bufferline"
       require("bufferline").setup(opts)
+    end
+  },
+
+  -- github integration
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons"
+    },
+    lazy = false,
+    init = function()
+      require("core.utils").load_mappings("octo")
+    end,
+    config = function()
+      require("octo").setup()
     end
   }
 }

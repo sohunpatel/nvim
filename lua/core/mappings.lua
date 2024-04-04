@@ -45,7 +45,7 @@ M.general = {
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     -- close buffer
-    ["<leader>x"] = { "cmd bdelete <CR>", "Close buffer" },
+    ["<leader>x"] = { "<cmd> bdelete <CR>", "Close buffer" },
     -- ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     -- format
@@ -274,7 +274,7 @@ M.telescope = {
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
+    -- ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
@@ -418,12 +418,12 @@ M.gitsigns = {
       "Reset hunk",
     },
 
-    ["<leader>ph"] = {
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      "Preview hunk",
-    },
+    -- ["<leader>ph"] = {
+    --   function()
+    --     require("gitsigns").preview_hunk()
+    --   end,
+    --   "Preview hunk",
+    -- },
 
     ["<leader>gb"] = {
       function()
@@ -479,6 +479,21 @@ M.bufferline = {
     -- change buffers
     ["<tab>"] = { "<cmd> BufferLineCycleNext <CR>", "Switch tabs" },
     ["<S-tab>"] = { "<cmd> BufferLineCyclePrev <CR>", "Switch tabs" },
+  }
+}
+
+M.octo = {
+  plugin = true,
+
+  n = {
+    -- issues
+    ["<leader>il"] = { "<cmd> Octo issue list <CR>" },
+    ["<leader>ic"] = { "<cmd> Octo issue close <CR>" },
+    ["<leader>ir"] = { "<cmd> Octo issue reopen <CR>" },
+    -- prs
+    ["<leader>pl"] = { "<cmd> Octo issue list <CR>" },
+    ["<leader>pc"] = { "<cmd> Octo issue close <CR>" },
+    ["<leader>pr"] = { "<cmd> Octo issue reopen <CR>" },
   }
 }
 
