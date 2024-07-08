@@ -3,7 +3,7 @@ local utils = require "core.utils"
 
 -- export on_attach & capabilites for custom lspconfigs
 M.on_attach = function(client, bufnr)
-  utils.load_mappings("lspconfig", { buffer = bufnr })
+  -- utils.load_mappings("lspconfig", { buffer = bufnr })
 
   if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
@@ -32,7 +32,19 @@ M.capabilites.textDocument.completion.completionItem = {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "ccls", "cmake", "lua_ls", "pylsp", "rust_analyzer" }
+local servers = { "clangd", "cmake", "lua_ls", "rust_analyzer", "svls" }
+
+lspconfig.pylsp.setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

@@ -45,7 +45,7 @@ M.general = {
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     -- close buffer
-    ["<leader>x"] = { "<cmd> bdelete <CR>", "Close buffer" },
+    ["<leader>x"] = { "<cmd> bp|bd # <CR>", "Close buffer" },
     -- ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     -- format
@@ -295,12 +295,12 @@ M.nvterm = {
       "Toggle floating term",
     },
 
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
+    -- ["<A-h>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "horizontal"
+    --   end,
+    --   "Toggle horizontal term",
+    -- },
 
     ["<A-v>"] = {
       function()
@@ -449,25 +449,29 @@ M.neogen = {
     ["<leader>df"] = {
       function()
         require("neogen").generate({ type = "func" })
-      end
+      end,
+      "Generate function documentation"
     },
     -- classes
     ["<leader>dc"] = {
       function()
         require("neogen").generate({ type = "class" })
-      end
+      end,
+      "Generate class documentation"
     },
     -- type
     ["<leader>dt"] = {
       function()
         require("neogen").generate({ type = "type" })
-      end
+      end,
+      "Generate type documentation"
     },
     -- file
     ["<leader>dF"] = {
       function()
         require("neogen").generate({ type = "file" })
-      end
+      end,
+      "Generate file documentation"
     }
   }
 }
@@ -487,11 +491,11 @@ M.octo = {
 
   n = {
     -- issues
-    ["<leader>il"] = { "<cmd> Octo issue list <CR>" },
+    ["<leader>il"] = { "<cmd> Octo issue list arches-computing-systems/dev <CR>" },
     ["<leader>ic"] = { "<cmd> Octo issue close <CR>" },
     ["<leader>ir"] = { "<cmd> Octo issue reopen <CR>" },
     -- prs
-    ["<leader>pl"] = { "<cmd> Octo issue list <CR>" },
+    ["<leader>pl"] = { "<cmd> Octo issue list arches-computing-systems/dev <CR>" },
     ["<leader>pc"] = { "<cmd> Octo issue close <CR>" },
     ["<leader>pr"] = { "<cmd> Octo issue reopen <CR>" },
   }

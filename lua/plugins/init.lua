@@ -12,23 +12,23 @@ local plugins = {
       require("vscode").setup()
       require("vscode").load()
     end,
-    lazy = false
+    lazy = false,
+    priority = 1000
   },
 
-  -- indentation guides
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    lazy = false,
-    version = "2.20.7",
-    event = "User FilePost",
-    opts = function()
-      return require("plugins.configs.others").blankline
-    end,
-    config = function(_, opts)
-      require("core.utils").load_mappings "blankline"
-      require("indent_blankline").setup(opts)
-    end,
-  },
+  -- -- indentation guides
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "User FilePost",
+  --   lazy = false,
+  --   opts = function()
+  --     return require("plugins.configs.others").blankline
+  --   end,
+  --   config = function(_, opts)
+  --     require("core.utils").load_mappings "blankline"
+  --     require("ibl").setup(opts)
+  --   end,
+  -- },
 
   -- better syntax highlighting
   {
@@ -62,6 +62,9 @@ local plugins = {
     "neovim/nvim-lspconfig",
     lazy = false,
     -- event = "User FilePost",
+    init = function ()
+      require("core.utils").load_mappings "lspconfig"
+    end,
     config = function()
       require "plugins.configs.lspconfig"
     end,
@@ -257,7 +260,6 @@ local plugins = {
     lazy = false,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "Mofiqul/vscode.nvim"
     },
     config = function()
       require("lualine").setup({
@@ -306,6 +308,65 @@ local plugins = {
     config = function()
       require("octo").setup()
     end
+  },
+
+  -- ripgrep substitution
+  {
+    "chrisgrieser/nvim-rip-substitute",
+    keys = {
+      {
+        "<leader>fs",
+        function() require("rip-substitute").sub() end,
+        mode = { "n", "x" },
+        desc = "RipGrep substitution"
+      },
+    },
+  },
+
+  -- UI stuff
+  "stevearc/dressing.nvim",
+
+  -- Better search highlighting
+  {
+    "kevinhwang91/nvim-hlslens",
+    lazy = false,
+  },
+
+  -- LSP dev info
+  {
+    "j-hui/fidget.nvim",
+    lazy = false,
+  },
+
+  -- better command wilder
+  -- TODO: configure wilder
+  {
+    "gelguy/wilder.nvim",
+    lazy = false
+  },
+
+  -- debug adapter protocol
+  {
+    "mfussenegger/nvim-dap"
+  },
+
+  -- zen mode
+  {
+    "folke/zen-mode.nvim",
+    keys = {
+      {
+        "<leader>z",
+        function()
+          require("zen-mode").toggle({
+            window = {
+              width = 0.85
+            }
+          })
+        end,
+        mode = { "n", "x" },
+        desc = "Enter zen mode"
+      }
+    }
   }
 }
 
