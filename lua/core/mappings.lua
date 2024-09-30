@@ -268,6 +268,9 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>fn"] = { "<cmd> Telescope notify <CR>", "List all notifications" },
+    ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "List document symbols" },
+    ["<leader>fS"] = { "<cmd> Telescope lsp_document_symbols <CR>", "List workspace symbols" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
@@ -491,13 +494,26 @@ M.octo = {
 
   n = {
     -- issues
-    ["<leader>il"] = { "<cmd> Octo issue list arches-computing-systems/dev <CR>" },
-    ["<leader>ic"] = { "<cmd> Octo issue close <CR>" },
-    ["<leader>ir"] = { "<cmd> Octo issue reopen <CR>" },
+    ["<leader>il"] = { 
+      "<cmd> Octo issue list<CR>",
+      "List all issues"
+    },
+    ["<leader>ic"] = {
+      "<cmd> Octo issue close <CR>",
+      "Close current issue"
+    },
+    ["<leader>ir"] = {
+      "<cmd> Octo issue reopen <CR>",
+      "Reopen issue"
+    },
+    ["<leader>ia"] = {
+      "<cmd> Octo issue list assignee=sohun-arches <CR>",
+      "List all issues assigned to me"
+    },
     -- prs
-    ["<leader>pl"] = { "<cmd> Octo issue list arches-computing-systems/dev <CR>" },
-    ["<leader>pc"] = { "<cmd> Octo issue close <CR>" },
-    ["<leader>pr"] = { "<cmd> Octo issue reopen <CR>" },
+    ["<leader>pl"] = { "<cmd> Octo pr list<CR>" },
+    ["<leader>pc"] = { "<cmd> Octo pr close <CR>" },
+    ["<leader>pr"] = { "<cmd> Octo pr reopen <CR>" },
   }
 }
 

@@ -16,6 +16,14 @@ local plugins = {
     priority = 1000
   },
 
+  -- gui notifications
+  {
+    "rcarriga/nvim-notify",
+    priority = 1000,
+    config = function()
+    end
+  },
+
   -- -- indentation guides
   -- {
   --   "lukas-reineke/indent-blankline.nvim",
@@ -34,7 +42,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
-    tag = "v0.9.2",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -243,14 +250,20 @@ local plugins = {
     lazy = false,
     -- event = "User FilePost",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = function()
-      return require("plugins.configs.neogen")
-    end,
     init = function()
       require("core.utils").load_mappings "neogen"
     end,
     config = function()
-      require("neogen").setup(opts)
+      require("neogen").setup({
+        enabled = true,
+        languages = {
+          python = {
+            template = {
+              annotation_convention = "numpydoc" -- for a full list of annotation_conventions, see supported-languages below,
+            }
+          },
+    }
+      })
     end
   },
 
@@ -265,6 +278,9 @@ local plugins = {
       require("lualine").setup({
         options = {
           theme = "vscode"
+        },
+        sections = {
+          lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter }
         }
       })
     end
@@ -313,14 +329,6 @@ local plugins = {
   -- ripgrep substitution
   {
     "chrisgrieser/nvim-rip-substitute",
-    keys = {
-      {
-        "<leader>fs",
-        function() require("rip-substitute").sub() end,
-        mode = { "n", "x" },
-        desc = "RipGrep substitution"
-      },
-    },
   },
 
   -- UI stuff
@@ -330,6 +338,9 @@ local plugins = {
   {
     "kevinhwang91/nvim-hlslens",
     lazy = false,
+    config = function()
+      require("hlslens").setup()
+    end
   },
 
   -- LSP dev info
@@ -367,9 +378,32 @@ local plugins = {
         desc = "Enter zen mode"
       }
     }
+  },
+
+  -- github notifications indicator
+  {
+    "rlch/github-notifications.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      -- "nvim-notify/notify.nvim"
+    }
+  },
+
+  -- asciidoc preview
+  {
+    "tigion/nvim-asciidoc-preview",
+    ft = { "asciidoc" },
+    build = "cd server && npm install",
+    opts = {
+      server = {
+        converter = "cmd"
+      }
+    }
   }
 }
 
 local config = require("core.config")
 
 require("lazy").setup(plugins, config.lazy_nvim)
+vim.notify = require("notify")
