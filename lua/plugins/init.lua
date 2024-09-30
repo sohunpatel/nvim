@@ -16,6 +16,14 @@ local plugins = {
     priority = 1000
   },
 
+  -- gui notifications
+  {
+    "rcarriga/nvim-notify",
+    priority = 1000,
+    config = function()
+    end
+  },
+
   -- -- indentation guides
   -- {
   --   "lukas-reineke/indent-blankline.nvim",
@@ -265,6 +273,9 @@ local plugins = {
       require("lualine").setup({
         options = {
           theme = "vscode"
+        },
+        sections = {
+          lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter }
         }
       })
     end
@@ -330,6 +341,9 @@ local plugins = {
   {
     "kevinhwang91/nvim-hlslens",
     lazy = false,
+    config = function()
+      require("hlslens").setup()
+    end
   },
 
   -- LSP dev info
@@ -367,9 +381,26 @@ local plugins = {
         desc = "Enter zen mode"
       }
     }
+  },
+
+  -- github notifications indicator
+  {
+    "rlch/github-notifications.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+
+  -- Asciidoc server plugin
+  {
+    "tigion/nvim-asciidoc-preview",
+    ft = { "asciidoc" },
+    build = "cd server and npm install"
   }
 }
 
 local config = require("core.config")
 
 require("lazy").setup(plugins, config.lazy_nvim)
+vim.notify = require("notify")
