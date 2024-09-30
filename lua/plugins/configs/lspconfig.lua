@@ -32,18 +32,29 @@ M.capabilites.textDocument.completion.completionItem = {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "clangd", "cmake", "lua_ls", "rust_analyzer", "svls" }
+local servers = { "clangd", "cmake", "harper_ls", "jinja_lsp", "lua_ls", "ruff", "rust_analyzer", "verible" }
 
 lspconfig.pylsp.setup {
   settings = {
     pylsp = {
       plugins = {
-        pycodestyle = {
-          maxLineLength = 100
+        autopep8 = {
+          enabled = false
+        },
+        mypy = {
+          enabled = false
         }
       }
     }
   }
+}
+
+vim.filetype.add {
+  extension = {
+    jinja = 'jinja',
+    jinja2 = 'jinja',
+    j2 = 'jinja',
+  },
 }
 
 for _, lsp in ipairs(servers) do

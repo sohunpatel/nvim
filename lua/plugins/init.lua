@@ -42,7 +42,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
-    tag = "v0.9.2",
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
@@ -251,14 +250,20 @@ local plugins = {
     lazy = false,
     -- event = "User FilePost",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = function()
-      return require("plugins.configs.neogen")
-    end,
     init = function()
       require("core.utils").load_mappings "neogen"
     end,
     config = function()
-      require("neogen").setup(opts)
+      require("neogen").setup({
+        enabled = true,
+        languages = {
+          python = {
+            template = {
+              annotation_convention = "numpydoc" -- for a full list of annotation_conventions, see supported-languages below,
+            }
+          },
+    }
+      })
     end
   },
 
@@ -324,14 +329,6 @@ local plugins = {
   -- ripgrep substitution
   {
     "chrisgrieser/nvim-rip-substitute",
-    keys = {
-      {
-        "<leader>fs",
-        function() require("rip-substitute").sub() end,
-        mode = { "n", "x" },
-        desc = "RipGrep substitution"
-      },
-    },
   },
 
   -- UI stuff
@@ -388,15 +385,21 @@ local plugins = {
     "rlch/github-notifications.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      "nvim-telescope/telescope.nvim",
+      -- "nvim-notify/notify.nvim"
     }
   },
 
-  -- Asciidoc server plugin
+  -- asciidoc preview
   {
     "tigion/nvim-asciidoc-preview",
     ft = { "asciidoc" },
-    build = "cd server and npm install"
+    build = "cd server && npm install",
+    opts = {
+      server = {
+        converter = "cmd"
+      }
+    }
   }
 }
 
