@@ -400,6 +400,12 @@ local plugins = {
         converter = "cmd"
       }
     }
+  },
+
+  -- veryl plugin
+  {
+    "veryl-lang/veryl.vim",
+    lazy = false
   }
 }
 
