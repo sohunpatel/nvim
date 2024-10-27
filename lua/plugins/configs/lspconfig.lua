@@ -32,7 +32,7 @@ M.capabilites.textDocument.completion.completionItem = {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "clangd", "cmake", "harper_ls", "jinja_lsp", "lua_ls", "ruff", "rust_analyzer", "verible", "veryl_ls" }
+local servers = { "clangd", "cmake", "harper_ls", "jinja_lsp", "lua_ls", "ruff", "rust_analyzer", "typst_lsp", "verible", "veryl_ls" }
 
 lspconfig.pylsp.setup {
   settings = {
@@ -46,6 +46,35 @@ lspconfig.pylsp.setup {
         }
       }
     }
+  }
+}
+
+lspconfig.harper_ls.setup {
+  settings = {
+    ["harper-ls"] = {
+      linters = {
+        spell_check = true,
+        spelled_numbers = false,
+        an_a = true,
+        sentence_capitalization = true,
+        unclosed_quotes = true,
+        wrong_quotes = true,
+        long_sentences = true,
+        repeated_words = true,
+        spaces = true,
+        matcher = true,
+        correct_number_suffix = true,
+        number_suffix_capitalization = true,
+        multiple_sequential_pronouns = true,
+        linking_verbs = true,
+        avoid_curses = true,
+        terminating_conjunctions = true
+      }
+    }
+  },
+  filetypes = {
+    "markdown",
+    "typst"
   }
 }
 

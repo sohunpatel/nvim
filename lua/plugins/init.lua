@@ -5,15 +5,15 @@ local plugins = {
   -- library for asynchronous functions
   "nvim-lua/plenary.nvim",
 
-  -- vscode theme
+  -- gruvbox theme
   {
-    "Mofiqul/vscode.nvim",
-    config = function()
-      require("vscode").setup()
-      require("vscode").load()
-    end,
+    "sainnhe/gruvbox-material",
     lazy = false,
-    priority = 1000
+    priority = 1000,
+    config = function()
+      vim.g.gruvbox_material_enable_italic = false
+      vim.cmd.colorscheme('gruvbox-material')
+    end
   },
 
   -- gui notifications
@@ -276,9 +276,6 @@ local plugins = {
     },
     config = function()
       require("lualine").setup({
-        options = {
-          theme = "vscode"
-        },
         sections = {
           lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter }
         }
