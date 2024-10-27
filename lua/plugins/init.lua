@@ -419,7 +419,7 @@ local plugins = {
   -- veryl plugin
   {
     "veryl-lang/veryl.vim",
-    lazy = false
+    ft = "veryl"
   }
 }
 
