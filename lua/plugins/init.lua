@@ -5,26 +5,15 @@ local plugins = {
   -- library for asynchronous functions
   "nvim-lua/plenary.nvim",
 
+  -- vscode theme
   {
-    "zaldih/themery.nvim",
+    "Mofiqul/vscode.nvim",
     config = function()
-      require("themery").setup({
-        livePreview = true
-      })
+      require("vscode").setup()
+      require("vscode").load()
     end,
     lazy = false,
     priority = 1000
-  },
-  
-  -- gruvbox theme
-  {
-    "sainnhe/gruvbox-material",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.gruvbox_material_enable_italic = false
-      vim.cmd.colorscheme('gruvbox-material')
-    end
   },
 
   -- gui notifications
@@ -173,10 +162,7 @@ local plugins = {
   -- fzf picker window
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { 
-      "nvim-treesitter/nvim-treesitter",
-      "mollerhoj/telescope-recent-files.nvim"
-    },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
     init = function()
       require("core.utils").load_mappings "telescope"
@@ -189,9 +175,9 @@ local plugins = {
       telescope.setup(opts)
 
       -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
+      -- for _, ext in ipairs(opts.extensions_list) do
+      --   telescope.load_extension(ext)
+      -- end
     end,
   },
 
@@ -291,7 +277,7 @@ local plugins = {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "auto"
+          theme = "vscode"
         },
         sections = {
           lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter }
@@ -404,15 +390,15 @@ local plugins = {
     }
   },
 
-  -- markdown live preview
+  -- asciidoc preview
   {
-    "OXY2DEV/markview.nvim",
-    lazy = false,      -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
-
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
+    "tigion/nvim-asciidoc-preview",
+    ft = { "asciidoc" },
+    build = "cd server && npm install",
+    opts = {
+      server = {
+        converter = "cmd"
+      }
     }
   },
 
