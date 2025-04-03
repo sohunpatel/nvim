@@ -48,6 +48,9 @@ opt.whichwrap:append "<>hl"
 
 g.mapleader = " "
 
+-- remove cmdline from below lualine
+opt.cmdheight = 0
+
 -- disable some default providers
 for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
   vim.g["loaded_" .. provider .. "_provider"] = 0

@@ -32,7 +32,7 @@ M.capabilites.textDocument.completion.completionItem = {
 
 local lspconfig = require "lspconfig"
 
-local servers = { "clangd", "cmake", "jinja_lsp", "lua_ls", "ruff", "rust_analyzer", "verible" }
+local servers = { "bashls", "clangd", "cmake", "jinja_lsp", "lua_ls", "ruff", "rust_analyzer", "verible" }
 
 lspconfig.pylsp.setup {
   settings = {

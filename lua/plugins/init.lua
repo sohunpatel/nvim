@@ -1,6 +1,7 @@
 -- All plugins have lazy=true be default, to load a plugin on startup set lazy=false
 -- List of all default plguins & their definitions
 local plugins = {
+  -- "williamboman/mason.nvim",
 
   -- library for asynchronous functions
   "nvim-lua/plenary.nvim",
@@ -15,7 +16,7 @@ local plugins = {
     lazy = false,
     priority = 1000
   },
-  
+
   -- gruvbox theme
   {
     "sainnhe/gruvbox-material",
@@ -35,19 +36,16 @@ local plugins = {
     end
   },
 
-  -- -- indentation guides
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = "User FilePost",
-  --   lazy = false,
-  --   opts = function()
-  --     return require("plugins.configs.others").blankline
-  --   end,
-  --   config = function(_, opts)
-  --     require("core.utils").load_mappings "blankline"
-  --     require("ibl").setup(opts)
-  --   end,
-  -- },
+  -- indentation guides
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "User FilePost",
+    lazy = false,
+    config = function(_)
+      require("core.utils").load_mappings "blankline"
+      require("ibl").setup()
+    end,
+  },
 
   -- better syntax highlighting
   {
@@ -80,7 +78,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     lazy = false,
     -- event = "User FilePost",
-    init = function ()
+    init = function()
       require("core.utils").load_mappings "lspconfig"
     end,
     config = function()
@@ -116,6 +114,14 @@ local plugins = {
           -- setup cmp for autopairs
           local cmp_autopairs = require "nvim-autopairs.completion.cmp"
           require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+      },
+
+      {
+        "zbirenbaum/copilot-cmp",
+        after = "copilot.lua",
+        config = function()
+          require("copilot_cmp").setup()
         end,
       },
 
@@ -173,7 +179,7 @@ local plugins = {
   -- fzf picker window
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { 
+    dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "mollerhoj/telescope-recent-files.nvim"
     },
@@ -273,10 +279,11 @@ local plugins = {
         languages = {
           python = {
             template = {
-              annotation_convention = "numpydoc" -- for a full list of annotation_conventions, see supported-languages below,
+              annotation_convention =
+              "numpydoc" -- for a full list of annotation_conventions, see supported-languages below,
             }
           },
-    }
+        }
       })
     end
   },
@@ -294,7 +301,12 @@ local plugins = {
           theme = "auto"
         },
         sections = {
-          lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter }
+          lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter, {
+            require("nvim-possession").status,
+            cond = function()
+              return require("nvim-possession").status() ~= nil
+            end
+          }, "overseer" },
         }
       })
     end
@@ -407,12 +419,12 @@ local plugins = {
   -- markdown live preview
   {
     "OXY2DEV/markview.nvim",
-    lazy = false,      -- Recommended
+    lazy = false, -- Recommended
     -- ft = "markdown" -- If you decide to lazy-load anyway
 
     dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     }
   },
 
@@ -420,6 +432,91 @@ local plugins = {
   {
     "veryl-lang/veryl.vim",
     lazy = false
+  },
+
+  -- neovim buffer sessions
+  {
+    "gennaro-tedesco/nvim-possession",
+    dependencies = {
+      "ibhagwan/fzf-lua"
+    },
+    init = function()
+      require("core.utils").load_mappings "possession"
+    end,
+    config = function()
+      require("nvim-possession").setup({
+        autoload = true,
+        autosave = true
+      })
+    end,
+  },
+
+  -- only format git modifications
+  {
+    "joechrisellis/lsp-format-modifications.nvim",
+    dependencies = {
+      "ibhagwan/fzf-lua"
+    },
+  },
+
+  -- neogit
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim"  -- optional
+    },
+    init = function()
+      require("core.utils").load_mappings "neogit"
+    end,
+    config = true
+  },
+
+  -- Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    event = "BufEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false }
+      })
+    end,
+  },
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependenciesies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" }
+    },
+    event = "BufEnter",
+    build = "make tiktoken",
+    opts = {
+      window = {
+        layout = "float"
+      }
+    }
+  },
+
+  -- task runner
+  {
+    "stevearc/overseer.nvim",
+    opts = {
+      templates = { "builtin", "arches" },
+      task_list = {
+        direction = "right",
+        bindings = {
+          ["r"] = "Restart"
+        }
+      }
+    },
+    init = function()
+      require("core.utils").load_mappings "overseer"
+    end,
   }
 }
 

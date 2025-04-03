@@ -30,7 +30,6 @@ M.general = {
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
     -- line numbers
-    ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -51,7 +50,10 @@ M.general = {
     -- format
     ["<leader>fm"] = {
       function()
-        vim.lsp.buf.format { async = true }
+        if (not require("conform").format()) 
+        then
+          vim.lsp.buf.format { async = true }
+        end
       end,
       "LSP formatting",
     },
@@ -83,6 +85,7 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
+    -- ["<leader>fj"] = { vim.lsp.buf.format, opts = { expr = true } }
   },
 
   x = {
@@ -100,11 +103,11 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
+    ["gi"] = {
       function()
-        vim.lsp.buf.declaration()
+        require("telescope.builtin").lsp_implementations()
       end,
-      "LSP declaration",
+      "LSP Implementation",
     },
 
     ["gd"] = {
@@ -119,13 +122,6 @@ M.lspconfig = {
         vim.lsp.buf.hover()
       end,
       "LSP hover",
-    },
-
-    ["gi"] = {
-      function()
-        vim.lsp.buf.implementation()
-      end,
-      "LSP implementation",
     },
 
     ["<leader>ls"] = {
@@ -144,7 +140,7 @@ M.lspconfig = {
 
     ["<leader>ra"] = {
       function()
-        require("nvchad.renamer").open()
+        vim.lsp.buf.rename()
       end,
       "LSP rename",
     },
@@ -158,7 +154,7 @@ M.lspconfig = {
 
     ["gr"] = {
       function()
-        vim.lsp.buf.references()
+        require("telescope.builtin").lsp_references()
       end,
       "LSP references",
     },
@@ -271,6 +267,7 @@ M.telescope = {
     ["<leader>fn"] = { "<cmd> Telescope notify <CR>", "List all notifications" },
     ["<leader>fs"] = { "<cmd> Telescope lsp_document_symbols <CR>", "List document symbols" },
     ["<leader>fS"] = { "<cmd> Telescope lsp_document_symbols <CR>", "List workspace symbols" },
+    ["<leader>fd"] = { "<cmd> Telescope diagnostics bufnr=0 <CR>", "Find diagnostics in this file" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
@@ -514,6 +511,132 @@ M.octo = {
     ["<leader>pl"] = { "<cmd> Octo pr list<CR>" },
     ["<leader>pc"] = { "<cmd> Octo pr close <CR>" },
     ["<leader>pr"] = { "<cmd> Octo pr reopen <CR>" },
+  }
+}
+
+M.possession = {
+  plugin = true,
+
+  n = {
+    ["<leader>sl"] = {
+      function()
+        require("nvim-possession").list()
+      end,
+      "List possesssion sessions"
+    },
+    ["<leader>sn"] = {
+      function()
+        require("nvim-possession").new()
+      end,
+      "Create new possesssion sessions"
+    },
+    ["<leader>su"] = {
+      function()
+        require("nvim-possession").update()
+      end,
+      "Update possesssion sessions"
+    },
+    ["<leader>sd"] = {
+      function()
+        require("nvim-possession").delete()
+      end,
+      "Delete possesssion sessions"
+    },
+  }
+}
+
+M.neogit = {
+  plugin = true,
+
+  n = {
+    ["<leader>ns"] = {
+      function()
+        require("neogit").open()
+      end,
+      "Open neogit status"
+    },
+    ["<leader>nc"] = {
+      function()
+        require("neogit").open({ "commit" })
+      end,
+      "Open neogit commit"
+    },
+    ["<leader>nd"] = {
+      function()
+        require("neogit").open({ "diff" })
+      end,
+      "Open neogit diff view"
+    }
+  }
+}
+
+M.overseer = {
+  plugin = true,
+
+  n = {
+    ["<leader>oi"] = {
+      "<cmd> OverseerInfo<CR>",
+      "Open Overseer Info"
+    },
+    ["<leader>oo"] = {
+      "<cmd> OverseerOpen<CR>",
+      "Open Overseer task list"
+    },
+    ["<leader>ol"] = {
+      "<cmd> OverseerLoadBundle<CR>",
+      "Open Overseer load task list"
+    },
+    ["<leader>os"] = {
+      "<cmd> OverseerSaveBundle<CR>",
+      "Open Overseer save task list"
+    },
+    ["<leader>oa"] = {
+      "<cmd> OverseerQuickAction restart<CR>",
+      "Restart last task"
+    },
+    ["<leader>or"] = {
+      function()
+        -- local pickers = require("telescope.pickers")
+        -- local finders = require "telescope.finders"
+        -- local conf = require("telescope.config").values
+        -- local action_state = require('telescope.actions.state')
+        --
+        -- local prepare_task_list = function()
+        --   local tasks = require("overseer").list_tasks()
+        --   local names = {}
+        --   vim.notify(string.format("length: %d", #tasks))
+        --   for _, task in ipairs(tasks) do
+        --     table.insert(names, task.name)
+        --   end
+        --   return names
+        -- end
+        --
+        -- local target = function(opts)
+        --   opts = opts or {}
+        --   pickers.new(opts, {
+        --     prompt_title = "run task",
+        --     finder = finders.new_table {
+        --       results = prepare_task_list()
+        --     },
+        --     sorter = conf.generic_sorter(opts),
+        --     attach_mappings = function(prompt_bufnr, map)
+        --       local action = function()
+        --         local task = action_state.get_selected_entry().value
+        --         require("overseer").run_template({ name = task })
+        --       end
+        --       map("i", "<CR>", action)
+        --       return true
+        --     end,
+        --   }):find()
+        -- end
+        --
+        -- target()
+
+        local target = vim.fn.input("Task: ")
+        require("overseer").run_template({ name = target })
+      end,
+      "Run task"
+    },
   }
 }
 
