@@ -48,7 +48,7 @@ local options = {
     },
   },
 
-  extensions_list = { "recent-files" },
+  -- extensions_list = { "themes", "terms" },
 }
 
 return options

@@ -195,9 +195,9 @@ local plugins = {
       telescope.setup(opts)
 
       -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
+      -- for _, ext in ipairs(opts.extensions_list) do
+      --   telescope.load_extension(ext)
+      -- end
     end,
   },
 
@@ -297,9 +297,6 @@ local plugins = {
     },
     config = function()
       require("lualine").setup({
-        options = {
-          theme = "auto"
-        },
         sections = {
           lualine_b = { "branch", "diff", "diagnostics", require('plugins.configs.ghn').formatter, {
             require("nvim-possession").status,
@@ -416,7 +413,7 @@ local plugins = {
     }
   },
 
-  -- markdown live preview
+  -- asciidoc preview
   {
     "OXY2DEV/markview.nvim",
     lazy = false, -- Recommended
