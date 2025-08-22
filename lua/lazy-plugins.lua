@@ -36,6 +36,7 @@ require("lazy").setup({
 	require("plugins.treesitter"),
 	require("plugins.conform"),
     require("plugins.comment"),
+    require("plugins.neogen"),
 
 	-- UI plugins
 	require("plugins.theme"),
