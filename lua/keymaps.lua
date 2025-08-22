@@ -54,4 +54,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Close the current buffer
 vim.keymap.set("n", "<leader>x", "<CMD> bw <CR>", { desc = "Close current buffer" })
 
+-- Keybinding to restart LSP servers
+vim.keymap.set("n", "<leader>lr", "<CMD> LspRestart <CR>", { desc = "Restart LSP" })
+
+-- Ctrl-S save all files
+vim.keymap.set("n", "C-s", "<CMD> w <CR>", { desc = "Save current buffer" })
+
 -- vim: ts=2 sts=2 sw=2 et

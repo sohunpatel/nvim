@@ -35,6 +35,7 @@ require("lazy").setup({
 	require("plugins.blink-cmp"),
 	require("plugins.treesitter"),
 	require("plugins.conform"),
+    require("plugins.comment"),
 
 	-- UI plugins
 	require("plugins.theme"),
@@ -51,6 +52,9 @@ require("lazy").setup({
 	require("plugins.gitsigns"),
 	require("plugins.neogit"),
 	require("plugins.octo"),
+
+    -- AI
+    require("plugins.copilot")
 }, {
 	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the

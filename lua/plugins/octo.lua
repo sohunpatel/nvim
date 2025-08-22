@@ -13,8 +13,9 @@ return {
 			})
 
 			-- Octo keymaps
-			vim.keymap.set("n", "<leader>oi", "<cmd> Octo issue list <CR>", { desc = "List all issues" })
-			vim.keymap.set("n", "<leader>op", "<cmd> Octo pr list <CR>", { desc = "List all prs" })
+			vim.keymap.set("n", "<leader>oi", "<cmd> Octo issue list <CR>", { desc = "[o]cto list all [i]ssues" })
+			vim.keymap.set("n", "<leader>op", "<cmd> Octo pr list <CR>", { desc = "[o]cto list all [p]rs" })
+            vim.keymap.set("n", "<leader>on", "<cmd> Octo notification list <CR>", { desc = "[o]cto list [n]otifications" })
 		end,
 	},
 }
