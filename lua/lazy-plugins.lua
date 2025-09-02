@@ -37,12 +37,15 @@ require("lazy").setup({
 	require("plugins.conform"),
     require("plugins.comment"),
     require("plugins.neogen"),
+    require("plugins.overseer"),
 
 	-- UI plugins
 	require("plugins.theme"),
 	require("plugins.todo-comments"),
 	require("plugins.neo-tree"),
 	require("plugins.bufferline"),
+	require("plugins.statusline"),
+    { "rcarriga/nvim-notify", priority = 1000 },
 
 	-- Utilities
 	require("plugins.which-key"),
@@ -77,3 +80,5 @@ require("lazy").setup({
 		},
 	},
 })
+
+vim.notify = require("notify")
