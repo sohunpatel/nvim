@@ -14,7 +14,13 @@ return {
                         cond = function()
                             return require("nvim-possession").status() ~= nil
                         end
-                    }, "overseer" }
+                    }, "overseer" },
+                    lualine_c = {
+                        {
+                            "filename",
+                            path = 1
+                        }
+                    }
                 }
             })
         end

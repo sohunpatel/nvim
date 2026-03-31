@@ -30,6 +30,7 @@ return {
             vim.keymap.set("n", "<leader>act", function()
                 require("CopilotChat").toggle()
             end, { desc = "CopilotChat - Toggle Chat" })
+            vim.keymap.set("v", "<leader>acd", "<CMD> CopilotChatDocs <CR>", { desc = "CopilotCaht - Add documentation" })
         end
     }
 }

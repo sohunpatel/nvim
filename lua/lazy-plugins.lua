@@ -45,6 +45,7 @@ require("lazy").setup({
 	require("plugins.neo-tree"),
 	require("plugins.bufferline"),
 	require("plugins.statusline"),
+    require("plugins.markdown"),
     { "rcarriga/nvim-notify", priority = 1000 },
 
 	-- Utilities
