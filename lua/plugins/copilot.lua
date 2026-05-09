@@ -1,5 +1,16 @@
 return {
     {
+        "zbirenbaum/copilot.lua",
+        requires = {
+            "copilotlsp-nvim/copilot-lsp",
+        },
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    },
+    {
         "CopilotC-Nvim/CopilotChat.nvim",
         dependencies = {
             { "zbirenbaum/copilot.lua" },
@@ -8,14 +19,14 @@ return {
         event = "BufEnter",
         opts = {
             window = {
-                layout = "float"
-            }
+                layout = "float",
+            },
         },
         config = function()
             require("CopilotChat").setup({
                 window = {
-                    layout = "float"
-                }
+                    layout = "float",
+                },
             })
 
             -- CopilotChat keymaps
@@ -23,14 +34,19 @@ return {
                 local input = vim.fn.input("Quick Chat: ")
                 if input ~= "" then
                     require("CopilotChat").ask(input, {
-                        selection = require("CopilotChat.select").buffer
+                        selection = require("CopilotChat.select").buffer,
                     })
                 end
             end, { desc = "CopilotChat - Quick Chat" })
             vim.keymap.set("n", "<leader>act", function()
                 require("CopilotChat").toggle()
             end, { desc = "CopilotChat - Toggle Chat" })
-            vim.keymap.set("v", "<leader>acd", "<CMD> CopilotChatDocs <CR>", { desc = "CopilotCaht - Add documentation" })
-        end
-    }
+            vim.keymap.set(
+                "v",
+                "<leader>acd",
+                "<CMD> CopilotChatDocs <CR>",
+                { desc = "CopilotCaht - Add documentation" }
+            )
+        end,
+    },
 }
